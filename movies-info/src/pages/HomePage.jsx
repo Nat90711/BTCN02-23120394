@@ -2,6 +2,7 @@ import React from "react";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
 import MovieSlider from "../components/movies/MovieSlider";
+import Banner from "@/components/movies/Banner";
 
 const HomePage = () => {
   // 1. Gọi API lấy 30 phim Phổ biến
@@ -18,15 +19,13 @@ const HomePage = () => {
 
   // Hiển thị màn hình chờ khi đang tải
   if (loadingPopular || loadingTopRated) {
-    return (
-      <div className="text-center py-20 dark:text-white">Đang tải phim...</div>
-    );
+    return <div className="text-center py-20 dark:text-white">Loading...</div>;
   }
 
   return (
     <div className="space-y-12 pb-10">
-      <section className="h-[400px] bg-slate-800 rounded-lg flex items-center justify-center text-white">
-        Banner Top 5 Phim sẽ nằm ở đây
+      <section>
+        <Banner movies={popularMovies} />
       </section>
 
       <section>

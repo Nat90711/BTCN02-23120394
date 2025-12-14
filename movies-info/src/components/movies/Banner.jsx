@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 const Banner = ({ movies }) => {
   const [current, setCurrent] = useState(0);
 
-  // 1. Lấy dữ liệu an toàn từ API (chọc vào .data)
+  // 1. Lấy dữ liệu an toàn từ API
   const movieList = movies?.data || [];
 
   // 2. Chỉ lấy 5 phim đầu tiên cho Banner
@@ -50,16 +50,6 @@ const Banner = ({ movies }) => {
             <p className="text-gray-200 line-clamp-3 text-base md:text-lg drop-shadow-md">
               {movie.short_description || "Đang cập nhật mô tả..."}
             </p>
-
-            <div className="flex gap-4 pt-4">
-              <Button
-                size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 text-lg h-12"
-              >
-                <PlayCircle className="w-5 h-5 mr-2" />
-                Xem Ngay
-              </Button>
-            </div>
           </div>
         </div>
       </div>
