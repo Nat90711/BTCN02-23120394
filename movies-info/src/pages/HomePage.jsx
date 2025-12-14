@@ -1,52 +1,40 @@
 import React from "react";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
+import MovieSlider from "../components/movies/MovieSlider";
 
 const HomePage = () => {
-  // 1. Gọi API lấy danh sách phim Phổ biến (Most Popular)
-  const {
-    data: popularMovies,
-    loading,
-    error,
-  } = useFetch(`${API_URL}/movies/most-popular`, { headers: getHeaders() });
+  // 1. Gọi API lấy 30 phim Phổ biến
+  const { data: popularMovies, loading: loadingPopular } = useFetch(
+    `${API_URL}/movies/most-popular?limit=30`,
+    { headers: getHeaders() }
+  );
 
-  // 2. Xử lý trạng thái đang tải hoặc lỗi
-  if (loading)
+  // 2. Gọi API lấy 30 phim Đánh giá cao
+  const { data: topRatedMovies, loading: loadingTopRated } = useFetch(
+    `${API_URL}/movies/top-rated?limit=30`,
+    { headers: getHeaders() }
+  );
+
+  // Hiển thị màn hình chờ khi đang tải
+  if (loadingPopular || loadingTopRated) {
     return (
-      <div className="text-center py-20 dark:text-white">
-        Đang tải dữ liệu phim...
-      </div>
+      <div className="text-center py-20 dark:text-white">Đang tải phim...</div>
     );
-  if (error)
-    return (
-      <div className="text-center py-20 text-red-500">Lỗi kết nối: {error}</div>
-    );
+  }
 
   return (
-    <div className="space-y-8">
-      {/* 3. Hiển thị tạm thời để test kết nối */}
-      <section>
-        <h2 className="text-2xl font-bold mb-4 dark:text-white">
-          Kết nối thành công! Tìm thấy {popularMovies?.length || 0} phim.
-        </h2>
+    <div className="space-y-12 pb-10">
+      <section className="h-[400px] bg-slate-800 rounded-lg flex items-center justify-center text-white">
+        Banner Top 5 Phim sẽ nằm ở đây
+      </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {/* Lấy 4 phim đầu tiên ra hiển thị thử */}
-          {popularMovies &&
-            popularMovies.slice(0, 4).map((movie) => (
-              <div
-                key={movie.id}
-                className="p-4 border rounded bg-white dark:bg-slate-800 dark:border-slate-700"
-              >
-                <h3 className="font-bold dark:text-yellow-400">
-                  {movie.title || movie.name}
-                </h3>
-                <p className="text-sm text-slate-500">
-                  {movie.releaseDate || movie.firstAirDate}
-                </p>
-              </div>
-            ))}
-        </div>
+      <section>
+        <MovieSlider title="Most Popular" movies={popularMovies} />
+      </section>
+
+      <section>
+        <MovieSlider title="Top Rating" movies={topRatedMovies} />
       </section>
     </div>
   );
