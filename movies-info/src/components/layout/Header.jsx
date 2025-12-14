@@ -9,7 +9,6 @@ const Header = () => {
         <div className="text-sm font-medium text-slate-600">23120394</div>
 
         <div className="flex items-center gap-2 text-xl font-bold text-red-600">
-          <Film className="w-6 h-6" />
           <span>Movies Info</span>
         </div>
 
