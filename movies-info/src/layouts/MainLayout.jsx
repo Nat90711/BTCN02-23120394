@@ -6,15 +6,17 @@ import NavBar from "../components/layout/NavBar";
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-slate-950 transition-colors">
-      <Header />
-      <NavBar />
+    <div className="min-h-screen bg-slate-200 dark:bg-black py-4 px-4 flex justify-center">
+      <div className="w-full max-w-[1200px] bg-white dark:bg-slate-950 shadow-2xl rounded-xl overflow-hidden flex flex-col min-h-[90vh] border border-slate-300 dark:border-slate-800">
+        <Header />
+        <NavBar />
 
-      <main className="flex-1 container mx-auto px-4 py-8 max-w-[1200px]">
-        <Outlet />
-      </main>
+        <main className="flex-1 px-4 py-8">
+          <Outlet />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };
