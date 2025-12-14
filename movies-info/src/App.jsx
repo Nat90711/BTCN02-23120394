@@ -1,18 +1,17 @@
-import { useState } from "react";
-import "./App.css";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import NavBar from "./components/layout/NavBar";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <>
-      <div className="min-h-screen flex flex-col bg-gray-50">
-        <Header />
-        <NavBar />
-        <Footer />
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
