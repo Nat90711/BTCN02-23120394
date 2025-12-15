@@ -37,14 +37,14 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="Search"
-              className="flex-1 h-10 px-4 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white shadow-sm"
+              className="flex-1 h-10 bg-white px-4 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white shadow-sm"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <Button
               onClick={handleSearch}
-              className="h-10 rounded-md bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 shadow-sm"
+              className="h-10 rounded-md bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 shadow-sm dark:bg-red-500"
             >
               Search
             </Button>

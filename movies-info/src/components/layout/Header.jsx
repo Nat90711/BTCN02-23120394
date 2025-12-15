@@ -29,7 +29,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <Sun className="w-4 h-4 text-orange-500" />
 
-            {/* 4. Gắn hàm toggleTheme vào Switch */}
+            {/* Gắn hàm toggleTheme vào Switch */}
             <Switch
               checked={isDarkMode}
               onCheckedChange={toggleTheme}
