@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
 import {
@@ -204,12 +204,13 @@ const MovieDetailPage = () => {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {movie.directors?.map((d, i) => (
-                  <span
+                  <Link
                     key={i}
-                    className="text-base font-medium text-slate-800 dark:text-slate-200 border-b-2 border-slate-200 dark:border-slate-700 pb-0.5"
+                    to={`/person/${d.id}`}
+                    className="text-base font-medium text-slate-800 dark:text-slate-200 border-b-2 border-slate-200 dark:border-slate-700 pb-0.5 hover:text-red-600 hover:border-red-600 transition-colors"
                   >
                     {d.name || d}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -218,11 +219,13 @@ const MovieDetailPage = () => {
               <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
                 <Users className="w-4 h-4" /> Actors
               </h4>
+              {/* Diễn viên */}
               <div className="flex flex-col gap-3">
                 {movie.actors?.slice(0, 4).map((a, i) => (
-                  <div
+                  <Link
                     key={i}
-                    className="flex items-center gap-3 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    to={`/person/${a.id}`}
+                    className="flex items-center gap-3 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-slate-800 transition-colors group"
                   >
                     {a.image ? (
                       <img
@@ -243,7 +246,7 @@ const MovieDetailPage = () => {
                         {a.character || "Actor"}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

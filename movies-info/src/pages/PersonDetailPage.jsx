@@ -1,13 +1,14 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
 import { Star, Calendar, ArrowLeft } from "lucide-react";
 
 const PersonDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const { data, loading, error } = useFetch(`${API_URL}/people/${id}`, {
+  const { data, loading, error } = useFetch(`${API_URL}/persons/${id}`, {
     headers: getHeaders(),
   });
 
@@ -28,13 +29,13 @@ const PersonDetailPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 animate-in fade-in duration-500">
-      {/* Nút quay lại (Optional) */}
-      <Link
-        to="/"
+      {/* Nút quay lại */}
+      <button
+        onClick={() => navigate(-1)}
         className="inline-flex items-center gap-2 text-slate-500 hover:text-red-600 mb-6 transition-colors"
       >
-        <ArrowLeft className="w-4 h-4" /> Quay lại trang chủ
-      </Link>
+        <ArrowLeft className="w-4 h-4" /> Quay lại
+      </button>
 
       <div className="flex flex-col md:flex-row gap-8 mb-12">
         {/* --- ẢNH ĐẠI DIỆN & THÔNG TIN CÁ NHÂN --- */}
