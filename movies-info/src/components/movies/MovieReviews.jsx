@@ -109,7 +109,7 @@ const MovieReviews = ({ movieId }) => {
   return (
     <div className="border-t border-slate-200 dark:border-slate-800 pt-10 mt-10">
       <h3 className="text-2xl font-bold mb-8 border-l-4 border-red-600 pl-4 uppercase flex items-center gap-3 text-slate-900 dark:text-white">
-        <MessageSquare className="w-6 h-6" /> Bình Luận{" "}
+        <MessageSquare className="w-6 h-6" /> Comments{" "}
         <span className="text-slate-400 text-lg font-normal">
           ({totalItems})
         </span>

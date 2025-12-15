@@ -50,16 +50,11 @@ const MovieDetailPage = () => {
               alt={movie.title}
               className="w-full h-auto object-cover aspect-[2/3] transition-transform duration-500 group-hover:scale-105"
             />
-            {movie.image && (
-              <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
-                HD
-              </div>
-            )}
           </div>
           {movie.box_office && (
             <div className="mt-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-4 rounded-lg text-center shadow-sm">
               <p className="text-xs text-green-800 dark:text-green-300 uppercase font-bold flex justify-center items-center gap-1 mb-1">
-                Doanh Thu
+                Revenue
               </p>
               <p className="font-bold text-xl text-green-700 dark:text-green-400">
                 {movie.box_office.cumulativeWorldwideGross ||
@@ -93,7 +88,7 @@ const MovieDetailPage = () => {
                 <Users className="w-4 h-4" /> Actors
               </h4>
               <div className="flex flex-col gap-3">
-                {movie.actors?.map((a, i) => (
+                {movie.actors?.slice(0, 10).map((a, i) => (
                   <Link
                     key={i}
                     to={`/person/${a.id}`}
@@ -171,7 +166,7 @@ const MovieDetailPage = () => {
 
           <div>
             <h3 className="text-xl font-bold mb-3 border-l-4 border-red-600 pl-3 uppercase">
-              Nội Dung
+              Content
             </h3>
             <div
               className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg text-justify space-y-4"
