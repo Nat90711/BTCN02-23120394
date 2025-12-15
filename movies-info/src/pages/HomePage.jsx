@@ -3,6 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
 import MovieSlider from "../components/movies/MovieSlider";
 import Banner from "@/components/movies/Banner";
+import { Spinner } from "@/components/ui/spinner";
 
 const HomePage = () => {
   // 1. Gọi API lấy 30 phim Phổ biến
@@ -19,7 +20,12 @@ const HomePage = () => {
 
   // Hiển thị màn hình chờ khi đang tải
   if (loadingPopular || loadingTopRated) {
-    return <div className="text-center py-20 dark:text-white">Loading...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+        <Spinner className="size-12 text-primary" />
+        <p className="text-lg text-muted-foreground">Loading...</p>
+      </div>
+    );
   }
 
   return (
