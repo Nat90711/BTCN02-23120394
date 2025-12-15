@@ -24,11 +24,14 @@ const Banner = ({ movies }) => {
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {bannerMovies.map((movie) => (
-          <div key={movie.id} className="min-w-full h-full relative">
+          <div
+            key={movie.id}
+            className="min-w-full h-full relative overflow-hidden"
+          >
             <img
               src={movie.image || "https://placehold.co/1200x600?text=No+Image"}
               alt={movie.title}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
             />
 
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent flex items-center">
