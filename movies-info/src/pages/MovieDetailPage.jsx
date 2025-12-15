@@ -49,7 +49,7 @@ const MovieDetailPage = () => {
 
   const handleToggleFavorite = async () => {
     if (!currentUser) {
-      toast.error("Vui lòng đăng nhập để lưu phim!");
+      toast.error("Vui lòng đăng nhập để thích phim!");
       return;
     }
 
