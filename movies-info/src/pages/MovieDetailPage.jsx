@@ -136,6 +136,61 @@ const MovieDetailPage = () => {
               </p>
             </div>
           )}
+
+          {/* DIRECTORS & ACTORS */}
+          <div className="mt-4 space-y-4">
+            <div>
+              <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
+                <Video className="w-4 h-4" /> Directors
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {movie.directors?.map((d, i) => (
+                  <Link
+                    key={i}
+                    to={`/person/${d.id}`}
+                    className="text-base font-medium text-slate-800 dark:text-slate-200 border-b-2 border-slate-200 dark:border-slate-700 pb-0.5 hover:text-red-600 hover:border-red-600 transition-colors"
+                  >
+                    {d.name || d}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
+                <Users className="w-4 h-4" /> Actors
+              </h4>
+              <div className="flex flex-col gap-3">
+                {movie.actors?.map((a, i) => (
+                  <Link
+                    key={i}
+                    to={`/person/${a.id}`}
+                    className="flex items-center gap-3 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-slate-800 transition-colors group"
+                  >
+                    {a.image ? (
+                      <img
+                        src={a.image}
+                        alt={a.name}
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center text-slate-500 font-bold">
+                        {a.name?.charAt(0)}
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                        {a.name}
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        {a.character || "Actor"}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* CHI TIẾT */}
@@ -195,61 +250,6 @@ const MovieDetailPage = () => {
                   "Đang cập nhật nội dung...",
               }}
             />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
-                <Video className="w-4 h-4" /> Directors
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {movie.directors?.map((d, i) => (
-                  <Link
-                    key={i}
-                    to={`/person/${d.id}`}
-                    className="text-base font-medium text-slate-800 dark:text-slate-200 border-b-2 border-slate-200 dark:border-slate-700 pb-0.5 hover:text-red-600 hover:border-red-600 transition-colors"
-                  >
-                    {d.name || d}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
-                <Users className="w-4 h-4" /> Actors
-              </h4>
-              {/* Diễn viên */}
-              <div className="flex flex-col gap-3">
-                {movie.actors?.slice(0, 4).map((a, i) => (
-                  <Link
-                    key={i}
-                    to={`/person/${a.id}`}
-                    className="flex items-center gap-3 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-slate-800 transition-colors group"
-                  >
-                    {a.image ? (
-                      <img
-                        src={a.image}
-                        alt={a.name}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center text-slate-500 font-bold">
-                        {a.name?.charAt(0)}
-                      </div>
-                    )}
-                    <div>
-                      <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
-                        {a.name}
-                      </p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        {a.character || "Actor"}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
 
           {movie.awards && (
