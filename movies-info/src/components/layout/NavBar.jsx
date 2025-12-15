@@ -28,7 +28,7 @@ const NavBar = () => {
           to="/"
           className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors text-black dark:text-white"
         >
-          <Home className="w-6 h-6" />
+          <Home className="w-8 h-8" />
         </Link>
 
         {/* Cụm tìm kiếm */}

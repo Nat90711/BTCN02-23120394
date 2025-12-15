@@ -5,6 +5,10 @@ import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import PersonDetailPage from "./pages/PersonDetailPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import AuthLayout from "./layouts/AuthLayout";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   return (
@@ -16,7 +20,13 @@ function App() {
           <Route path="movie/:id" element={<MovieDetailPage />} />
           <Route path="person/:id" element={<PersonDetailPage />} />
         </Route>
+
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
       </Routes>
+      <Toaster position="top-center" richColors />
     </BrowserRouter>
   );
 }

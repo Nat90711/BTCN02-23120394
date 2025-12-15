@@ -10,7 +10,7 @@ const AuthLayout = () => {
           <Film className="w-6 h-6 text-white" />
         </div>
         <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Movie<span className="text-red-600">App</span>
+          Movies<span className="text-red-600">Info</span>
         </span>
       </div>
       <Outlet />

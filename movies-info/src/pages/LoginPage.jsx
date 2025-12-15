@@ -10,7 +10,6 @@ import { Input } from "../components/ui/input";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -23,6 +22,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../components/ui/form";
+import { toast } from "sonner";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Vui lòng nhập tên đăng nhập"),
@@ -45,6 +45,9 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     try {
       await login({ username: data.username, password: data.password });
+      toast.success("Đăng nhập thành công", {
+        duration: 2000,
+      });
       navigate("/");
     } catch (error) {
       // Set lỗi chung cho form nếu API trả về lỗi

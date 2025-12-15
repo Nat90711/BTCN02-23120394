@@ -21,7 +21,7 @@ import {
 } from "../ui/dropdown-menu";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useAuth } from "../../contexts/AuthContext";
-
+import { toast } from "sonner";
 const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
   const { currentUser, logout } = useAuth();
@@ -29,6 +29,9 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
+    toast.success("Đăng xuất thành công", {
+      duration: 2000,
+    });
     navigate("/");
   };
 
