@@ -7,6 +7,7 @@ import {
   Moon,
   Sun,
   Heart,
+  User,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Switch } from "../ui/switch";
@@ -37,10 +38,10 @@ const Header = () => {
 
   return (
     <header className="border-b bg-white dark:bg-black py-3">
-      <div className="container mx-auto px-4 flex items-center justify-between max-w-[1200px]">
+      <div className="container mx-auto px-4 flex items-center justify-between max-w-[1200px] relative">
         <div className="text-l font-bold">23120394</div>
 
-        <div className="flex items-center gap-2 text-xl font-bold text-red-600">
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-xl font-bold text-red-600">
           <span>Movies Info</span>
         </div>
 
@@ -91,7 +92,14 @@ const Header = () => {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
 
-                  {/* Link tới trang yêu thích (sẽ làm sau) */}
+                  <Link to="/profile">
+                    <DropdownMenuItem className="cursor-pointer">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Hồ sơ cá nhân</span>
+                    </DropdownMenuItem>
+                  </Link>
+
+                  {/* Link tới trang yêu thích */}
                   <Link to="/favorites">
                     <DropdownMenuItem className="cursor-pointer">
                       <Heart className="mr-2 h-4 w-4 text-red-500" />

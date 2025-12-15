@@ -29,14 +29,6 @@ const PersonDetailPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 animate-in fade-in duration-500">
-      {/* Nút quay lại */}
-      <button
-        onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 text-slate-500 hover:text-red-600 mb-6 transition-colors cursor-pointer"
-      >
-        <ArrowLeft className="w-4 h-4" /> Back
-      </button>
-
       <div className="flex flex-col md:flex-row gap-8 mb-12">
         {/* --- ẢNH ĐẠI DIỆN & THÔNG TIN CÁ NHÂN --- */}
         <div className="w-full md:w-1/4">

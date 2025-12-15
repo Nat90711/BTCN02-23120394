@@ -7,18 +7,7 @@ import { Heart } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import {
-  Star,
-  Calendar,
-  Clock,
-  Award,
-  Users,
-  Video,
-  DollarSign,
-  MessageSquare,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { Star, Calendar, Clock, Award, Users, Video } from "lucide-react";
 
 const MovieDetailPage = () => {
   const { id } = useParams();

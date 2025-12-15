@@ -8,6 +8,8 @@ import PersonDetailPage from "./pages/PersonDetailPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AuthLayout from "./layouts/AuthLayout";
+import FavoritesPage from "./pages/FavoritesPage";
+import ProfilePage from "./pages/ProfilePage";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path="search" element={<SearchPage />} />
           <Route path="movie/:id" element={<MovieDetailPage />} />
           <Route path="person/:id" element={<PersonDetailPage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
 
         <Route element={<AuthLayout />}>
