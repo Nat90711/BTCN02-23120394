@@ -200,7 +200,7 @@ const MovieDetailPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
-                <Video className="w-4 h-4" /> Đạo Diễn
+                <Video className="w-4 h-4" /> Directors
               </h4>
               <div className="flex flex-wrap gap-2">
                 {movie.directors?.map((d, i) => (
@@ -216,7 +216,7 @@ const MovieDetailPage = () => {
 
             <div>
               <h4 className="font-bold flex items-center gap-2 mb-3 text-red-600 uppercase text-sm tracking-wide">
-                <Users className="w-4 h-4" /> Diễn Viên Chính
+                <Users className="w-4 h-4" /> Actors
               </h4>
               <div className="flex flex-col gap-3">
                 {movie.actors?.slice(0, 4).map((a, i) => (
@@ -254,7 +254,7 @@ const MovieDetailPage = () => {
               <Award className="w-8 h-8 text-yellow-600 dark:text-yellow-500 flex-shrink-0" />
               <div>
                 <h4 className="font-bold text-yellow-800 dark:text-yellow-500 mb-1">
-                  Giải Thưởng
+                  Awards
                 </h4>
                 <p className="text-sm text-slate-700 dark:text-slate-300 italic">
                   {movie.awards}
