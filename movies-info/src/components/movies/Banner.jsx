@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Banner = ({ movies }) => {
   const [current, setCurrent] = useState(0);
@@ -28,31 +29,35 @@ const Banner = ({ movies }) => {
             key={movie.id}
             className="min-w-full h-full relative overflow-hidden"
           >
-            <img
-              src={movie.image || "https://placehold.co/1200x600?text=No+Image"}
-              alt={movie.title}
-              className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
-            />
+            <Link to={`/movie/${movie.id}`}>
+              <img
+                src={
+                  movie.image || "https://placehold.co/1200x600?text=No+Image"
+                }
+                alt={movie.title}
+                className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              />
 
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent flex items-center">
-              <div className="container mx-auto px-8 md:px-12">
-                <div className="max-w-xl space-y-6">
-                  <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
-                    {movie.title}
-                  </h1>
-                  <div className="flex items-center gap-4 text-sm text-gray-300">
-                    <span className="text-yellow-400 font-bold">
-                      ★ {movie.rate || "N/A"}
-                    </span>
-                    <span>|</span>
-                    <span>{movie.year}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent flex items-center">
+                <div className="container mx-auto px-8 md:px-12">
+                  <div className="max-w-xl space-y-6">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
+                      {movie.title}
+                    </h1>
+                    <div className="flex items-center gap-4 text-sm text-gray-300">
+                      <span className="text-yellow-400 font-bold">
+                        ★ {movie.rate || "N/A"}
+                      </span>
+                      <span>|</span>
+                      <span>{movie.year}</span>
+                    </div>
+                    <p className="text-gray-200 line-clamp-3 text-base md:text-lg drop-shadow-md">
+                      {movie.short_description || "Đang cập nhật mô tả..."}
+                    </p>
                   </div>
-                  <p className="text-gray-200 line-clamp-3 text-base md:text-lg drop-shadow-md">
-                    {movie.short_description || "Đang cập nhật mô tả..."}
-                  </p>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

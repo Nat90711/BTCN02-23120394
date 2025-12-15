@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const MovieSlider = ({ title, movies }) => {
   const [startIndex, setStartIndex] = useState(0);
@@ -37,39 +38,42 @@ const MovieSlider = ({ title, movies }) => {
           {movieList.map((movie) => (
             <div key={movie.id} className="min-w-[33.333333%] px-3 box-border">
               <div className="group relative rounded-lg overflow-hidden cursor-pointer shadow-lg bg-slate-200 dark:bg-slate-800 h-[350px] transition-all duration-300 hover:scale-105 hover:z-50 hover:shadow-2xl">
-                <img
-                  src={
-                    movie.image || "https://placehold.co/400x600?text=No+Image"
-                  }
-                  alt={movie.title}
-                  className="w-full h-full object-cover"
-                />
+                <Link to={`/movie/${movie.id}`}>
+                  <img
+                    src={
+                      movie.image ||
+                      "https://placehold.co/400x600?text=No+Image"
+                    }
+                    alt={movie.title}
+                    className="w-full h-full object-cover"
+                  />
 
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                  <h3 className="text-white font-bold text-lg line-clamp-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex items-center gap-1 text-yellow-400 mt-1">
-                    <Star className="w-4 h-4 fill-yellow-400" />
-                    <span className="text-sm font-bold">
-                      {movie.rate || "N/A"}
-                    </span>
+                  <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h3 className="text-white font-bold text-lg line-clamp-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex items-center gap-1 text-yellow-400 mt-1">
+                      <Star className="w-4 h-4 fill-yellow-400" />
+                      <span className="text-sm font-bold">
+                        {movie.rate || "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      {movie.genres &&
+                        movie.genres.slice(0, 2).map((genre, index) => (
+                          <span
+                            key={index}
+                            className="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded"
+                          >
+                            {genre}
+                          </span>
+                        ))}
+                    </div>
+                    <p className="text-gray-300 text-xs mt-2 line-clamp-2">
+                      {movie.short_description}
+                    </p>
                   </div>
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {movie.genres &&
-                      movie.genres.slice(0, 2).map((genre, index) => (
-                        <span
-                          key={index}
-                          className="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded"
-                        >
-                          {genre}
-                        </span>
-                      ))}
-                  </div>
-                  <p className="text-gray-300 text-xs mt-2 line-clamp-2">
-                    {movie.short_description}
-                  </p>
-                </div>
+                </Link>
               </div>
             </div>
           ))}
