@@ -1,8 +1,16 @@
 import React from "react";
-import { Settings, LogIn, UserPlus, Moon, Sun } from "lucide-react";
+import {
+  Settings,
+  LogIn,
+  LogOut,
+  UserPlus,
+  Moon,
+  Sun,
+  Heart,
+} from "lucide-react";
 import { Button } from "../ui/button";
 import { Switch } from "../ui/switch";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,9 +20,17 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useTheme } from "../../contexts/ThemeContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header className="border-b bg-white dark:bg-black py-3">
@@ -44,27 +60,70 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full hover:bg-red-100 dark:hover:bg-slate-800 transition-colors"
+                className="rounded-full hover:bg-red-100 dark:hover:bg-slate-800 transition-colors relative"
               >
-                <Settings className="w-6 h-6 text-slate-700 dark:text-slate-300 animate-in spin-in-3" />
+                {/* Nếu đã login thì hiện icon User màu đỏ, chưa thì hiện Răng cưa */}
+                {currentUser ? (
+                  <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold shadow-md">
+                    {currentUser.username?.charAt(0).toUpperCase() || "U"}
+                  </div>
+                ) : (
+                  <Settings className="w-6 h-6 text-slate-700 dark:text-slate-300" />
+                )}
               </Button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>Tài khoản</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <Link to="/login">
-                <DropdownMenuItem>
-                  <LogIn className="mr-2 h-4 w-4" />
-                  <span>Đăng nhập</span>
-                </DropdownMenuItem>
-              </Link>
-              <Link to="/register">
-                <DropdownMenuItem>
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  <span>Đăng ký</span>
-                </DropdownMenuItem>
-              </Link>
+              {/* --- LOGIC HIỂN THỊ MENU --- */}
+              {currentUser ? (
+                // MENU KHI ĐÃ ĐĂNG NHẬP
+                <>
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col">
+                      <span>Xin chào, {currentUser.username}</span>
+                      <span className="text-xs text-slate-400 font-normal">
+                        {currentUser.email}
+                      </span>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+
+                  {/* Link tới trang yêu thích (sẽ làm sau) */}
+                  <Link to="/favorites">
+                    <DropdownMenuItem className="cursor-pointer">
+                      <Heart className="mr-2 h-4 w-4 text-red-500" />
+                      <span>Phim yêu thích</span>
+                    </DropdownMenuItem>
+                  </Link>
+
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Đăng xuất</span>
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                // MENU KHI CHƯA ĐĂNG NHẬP (GUEST)
+                <>
+                  <DropdownMenuLabel>Tài khoản</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <Link to="/login">
+                    <DropdownMenuItem className="cursor-pointer">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      <span>Đăng nhập</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link to="/register">
+                    <DropdownMenuItem className="cursor-pointer">
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      <span>Đăng ký</span>
+                    </DropdownMenuItem>
+                  </Link>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
