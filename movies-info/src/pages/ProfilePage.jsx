@@ -113,7 +113,7 @@ const ProfilePage = () => {
       <Card className="w-full max-w-2xl shadow-xl border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-bottom-4">
         {/* HEADER */}
         <CardHeader className="text-center border-b border-slate-100 dark:border-slate-800 pb-6 bg-slate-50/50 dark:bg-slate-900/50 rounded-t-xl">
-          <div className="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-pink-600 text-white flex items-center justify-center text-4xl font-bold mb-4 shadow-lg ring-4 ring-white dark:ring-slate-800">
+          <div className="mx-auto w-24 h-24 rounded-full bg-blue-500 to-blue-600 dark:bg-red-600 text-white flex items-center justify-center text-4xl font-bold mb-4 shadow-lg ring-4 ring-white dark:ring-slate-800">
             {currentUser.username?.charAt(0).toUpperCase()}
           </div>
           <CardTitle className="text-2xl font-bold text-slate-800 dark:text-white">
@@ -225,7 +225,7 @@ const ProfilePage = () => {
 
                 <Button
                   type="submit"
-                  className="w-full md:w-auto bg-red-600 hover:bg-red-700 gap-2 font-bold shadow-md shadow-red-200 dark:shadow-none"
+                  className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 dark:bg-red-600 dark:hover:bg-red-700 gap-2 font-bold shadow-md shadow-blue-200 dark:shadow-none"
                   disabled={form.formState.isSubmitting}
                 >
                   {form.formState.isSubmitting ? (
