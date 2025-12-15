@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
+import MovieReviews from "@/components/movies/MovieReviews";
 import {
   Star,
   Calendar,
@@ -14,75 +15,6 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-
-// --- COMPONENT CON: XỬ LÝ TỪNG BÌNH LUẬN  ---
-const ReviewItem = ({ review }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const maxLength = 300;
-
-  const content = review.content || "";
-  const shouldTruncate = content.length > maxLength;
-
-  const displayContent =
-    !isExpanded && shouldTruncate
-      ? content.substring(0, maxLength) + "..."
-      : content;
-
-  return (
-    <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-3">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-pink-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-            {review.user?.charAt(0).toUpperCase() || "U"}
-          </div>
-          <div>
-            <div className="font-bold text-slate-800 dark:text-slate-200 text-base">
-              {review.user}
-            </div>
-            {review.rate && (
-              <div className="flex items-center gap-1 text-yellow-500 text-xs font-bold mt-0.5">
-                <Star className="w-3 h-3 fill-current" />
-                <span>{review.rate}/10</span>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="text-xs text-slate-400 font-medium bg-white dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">
-          {new Date(review.date).toLocaleDateString("vi-VN")}
-        </div>
-      </div>
-
-      {review.title && (
-        <h4 className="font-bold text-base mb-2 text-slate-900 dark:text-white">
-          {review.title}
-        </h4>
-      )}
-
-      <div className="text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed border-l-4 border-slate-300 dark:border-slate-700 pl-4 py-1 bg-white/50 dark:bg-transparent rounded-r-lg">
-        "{displayContent}"
-      </div>
-
-      {/* Nút Xem thêm / Thu gọn */}
-      {shouldTruncate && (
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-3 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
-        >
-          {isExpanded ? (
-            <>
-              Thu gọn <ChevronUp className="w-3 h-3" />
-            </>
-          ) : (
-            <>
-              Xem thêm <ChevronDown className="w-3 h-3" />
-            </>
-          )}
-        </button>
-      )}
-    </div>
-  );
-};
-// -----------------------------------------------------------------------
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -269,22 +201,7 @@ const MovieDetailPage = () => {
       </div>
 
       {/* BÌNH LUẬN */}
-      {movie.reviews && movie.reviews.length > 0 && (
-        <div className="border-t border-slate-200 dark:border-slate-800 pt-10 mt-10">
-          <h3 className="text-2xl font-bold mb-8 border-l-4 border-red-600 pl-4 uppercase flex items-center gap-3 text-slate-900 dark:text-white">
-            <MessageSquare className="w-6 h-6" /> Comments{" "}
-            <span className="text-slate-400 text-lg font-normal">
-              ({movie.reviews.length})
-            </span>
-          </h3>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {movie.reviews.map((review, index) => (
-              <ReviewItem key={index} review={review} />
-            ))}
-          </div>
-        </div>
-      )}
+      <MovieReviews movieId={id} />
     </div>
   );
 };
