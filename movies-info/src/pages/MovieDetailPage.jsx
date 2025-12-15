@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL, getHeaders } from "../utils/constants";
 import MovieReviews from "@/components/movies/MovieReviews";
+import { Heart } from "lucide-react";
+import { toast } from "sonner";
+import { useAuth } from "../contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 import {
   Star,
   Calendar,
@@ -18,12 +22,86 @@ import {
 
 const MovieDetailPage = () => {
   const { id } = useParams();
+  const { currentUser } = useAuth();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { data, loading, error } = useFetch(`${API_URL}/movies/${id}`, {
     headers: getHeaders(),
   });
 
   const movie = data?.data || data;
+
+  // Kiểm tra phim có trong danh sách yêu thích không
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      if (!currentUser) {
+        setIsFavorite(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_URL}/users/favorites`, {
+          headers: getHeaders(),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const favorites = Array.isArray(data) ? data : data.data || [];
+          const isInFavorites = favorites.some((fav) => fav.id === id);
+          setIsFavorite(isInFavorites);
+        }
+      } catch (err) {
+        console.error("Lỗi kiểm tra yêu thích:", err);
+      }
+    };
+
+    checkFavoriteStatus();
+  }, [id, currentUser]);
+
+  const handleToggleFavorite = async () => {
+    if (!currentUser) {
+      toast.error("Vui lòng đăng nhập để lưu phim!");
+      return;
+    }
+
+    try {
+      if (isFavorite) {
+        // Xóa khỏi yêu thích
+        const res = await fetch(`${API_URL}/users/favorites/${id}`, {
+          method: "DELETE",
+          headers: getHeaders(),
+        });
+
+        if (res.ok) {
+          setIsFavorite(false);
+          toast.success("Đã xóa khỏi danh sách yêu thích!");
+        } else {
+          toast.error("Không thể xóa phim");
+        }
+      } else {
+        // Thêm vào yêu thích
+        const res = await fetch(`${API_URL}/users/favorites/${id}`, {
+          method: "POST",
+          headers: getHeaders(),
+        });
+
+        if (res.ok) {
+          setIsFavorite(true);
+          toast.success("Đã thêm vào danh sách yêu thích!");
+        } else {
+          const errorData = await res.json();
+          if (res.status === 409 || errorData.message?.includes("exist")) {
+            setIsFavorite(true);
+            toast.info("Phim này đã có trong danh sách rồi!");
+          } else {
+            toast.error("Lỗi: " + (errorData.message || "Không thể thêm phim"));
+          }
+        }
+      }
+    } catch (err) {
+      toast.error("Lỗi kết nối server");
+    }
+  };
 
   if (loading)
     return (
@@ -149,6 +227,20 @@ const MovieDetailPage = () => {
                   <span>{movie.runtime}</span>
                 </div>
               )}
+              <Button
+                variant="outline"
+                className={`gap-2 ${
+                  isFavorite
+                    ? "border-red-600 bg-red-50 dark:bg-red-900/20 text-red-600"
+                    : "border-red-600 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                }`}
+                onClick={handleToggleFavorite}
+              >
+                <Heart
+                  className={`w-4 h-4 ${isFavorite ? "fill-red-600" : ""}`}
+                />{" "}
+                {isFavorite ? "Đã yêu thích" : "Yêu thích"}
+              </Button>
             </div>
 
             <div className="flex flex-wrap gap-2">
