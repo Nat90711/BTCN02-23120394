@@ -32,9 +32,9 @@ const PersonDetailPage = () => {
       {/* Nút quay lại */}
       <button
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 text-slate-500 hover:text-red-600 mb-6 transition-colors"
+        className="inline-flex items-center gap-2 text-slate-500 hover:text-red-600 mb-6 transition-colors cursor-pointer"
       >
-        <ArrowLeft className="w-4 h-4" /> Quay lại
+        <ArrowLeft className="w-4 h-4" /> Back
       </button>
 
       <div className="flex flex-col md:flex-row gap-8 mb-12">
