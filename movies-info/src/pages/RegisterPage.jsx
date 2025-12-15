@@ -22,6 +22,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../components/ui/form";
+import { toast } from "sonner";
 
 const registerSchema = z
   .object({
@@ -62,7 +63,9 @@ const RegisterPage = () => {
         phone: data.phone,
         dob: data.dob,
       });
-      alert("Đăng ký thành công! Vui lòng đăng nhập.");
+      toast.success("Đăng ký thành công", {
+        duration: 2000,
+      });
       navigate("/login");
     } catch (error) {
       form.setError("root", { message: error.message });
@@ -173,7 +176,7 @@ const RegisterPage = () => {
 
             <Button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-700 mt-2"
+              className="w-full bg-red-600 hover:bg-red-700 mt-2 text-black dark:text-white"
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? (

@@ -44,7 +44,7 @@ const NavBar = () => {
             />
             <Button
               onClick={handleSearch}
-              className="h-10 rounded-md bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 shadow-sm dark:bg-red-500"
+              className="h-10 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer text-white font-medium px-6 shadow-sm dark:bg-red-500"
             >
               Search
             </Button>

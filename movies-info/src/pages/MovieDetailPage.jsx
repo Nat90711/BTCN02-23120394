@@ -237,7 +237,7 @@ const MovieDetailPage = () => {
                 movie.genres.map((genre, index) => (
                   <span
                     key={index}
-                    className="px-4 py-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all rounded-full text-sm font-medium cursor-default"
+                    className="px-4 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white hover:border-red-600 dark:hover:border-red-600 transition-all rounded-full text-sm font-medium cursor-default"
                   >
                     {genre}
                   </span>

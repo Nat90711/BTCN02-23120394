@@ -64,11 +64,11 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full hover:bg-red-100 dark:hover:bg-slate-800 transition-colors relative"
+                className="rounded-full hover:bg-blue-100 dark:hover:bg-slate-800 transition-colors relative"
               >
                 {/* Nếu đã login thì hiện icon User, chưa thì hiện Răng cưa */}
                 {currentUser ? (
-                  <div className="w-8 h-8 rounded-full bg-blue-500 hover:bg-blue-600 dark:hover:bg-red-600 dark:bg-red-500  text-white flex items-center justify-center font-bold shadow-md">
+                  <div className="w-8 h-8 rounded-full bg-blue-500 hover:bg-blue-600 dark:hover:bg-red-600 dark:bg-red-500 text-white flex items-center justify-center font-bold shadow-md">
                     {currentUser.username?.charAt(0).toUpperCase() || "U"}
                   </div>
                 ) : (

@@ -83,7 +83,7 @@ const MovieSlider = ({ title, movies }) => {
         <button
           onClick={prevSlide}
           disabled={startIndex === 0}
-          className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-slate-800/80 rounded-full shadow-md hover:bg-red-600 hover:text-white transition-all ${
+          className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-slate-800/80 text-slate-800 dark:text-white rounded-full shadow-md hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all ${
             startIndex === 0 ? "opacity-0 invisible" : "opacity-100 visible"
           }`}
         >
@@ -93,7 +93,7 @@ const MovieSlider = ({ title, movies }) => {
         <button
           onClick={nextSlide}
           disabled={startIndex + itemsPerPage >= movieList.length}
-          className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-slate-800/80 rounded-full shadow-md hover:bg-red-600 hover:text-white transition-all ${
+          className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-slate-800/80 text-slate-800 dark:text-white rounded-full shadow-md hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all ${
             startIndex + itemsPerPage >= movieList.length
               ? "opacity-0 invisible"
               : "opacity-100 visible"

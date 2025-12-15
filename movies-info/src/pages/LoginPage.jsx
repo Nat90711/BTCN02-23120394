@@ -48,7 +48,7 @@ const LoginPage = () => {
       toast.success("Đăng nhập thành công", {
         duration: 2000,
       });
-      navigate("/");
+      navigate("/", { replace: true });
     } catch (error) {
       // Set lỗi chung cho form nếu API trả về lỗi
       form.setError("root", { message: error.message });
@@ -105,7 +105,7 @@ const LoginPage = () => {
 
             <Button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-700"
+              className="w-full bg-red-600 hover:bg-red-700 text-black dark:text-white"
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? (
