@@ -4,8 +4,14 @@ export const APP_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjIzXzMxIiwicm9sZSI6InVzZXIiLCJhcGlfYWNjZXNzIjp0cnVlLCJpYXQiOjE3NjUzNjE3NjgsImV4cCI6MTc3MDU0NTc2OH0.O4I48nov3NLaKDSBhrPe9rKZtNs9q2Tkv4yK0uMthoo";
 
 export const getHeaders = () => {
-  return {
+  const headers = {
     "Content-Type": "application/json",
+    Accept: "application/json",
     "x-app-token": APP_TOKEN,
   };
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    headers["Authorization"] = `Bearer ${accessToken}`;
+  }
+  return headers;
 };
