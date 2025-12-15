@@ -139,7 +139,7 @@ const FavoritesPage = () => {
                       <div className="flex items-center gap-1 text-yellow-400 mt-1">
                         <Star className="w-3 h-3 fill-current" />
                         <span className="text-xs font-bold">
-                          {movie.imdb_rating || "N/A"}
+                          {movie.external_ratings.imDb || "N/A"}
                         </span>
                       </div>
                     </div>

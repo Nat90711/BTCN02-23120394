@@ -9,12 +9,12 @@ const Footer = () => {
           {/* Thông tin bên trái */}
           <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
             <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-red-600" />
+              <MapPin className="w-4 h-4 text-blue-600 dark:text-red-600" />
               Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
             </span>
             <span className="hidden md:inline">•</span>
             <span className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-red-600" />
+              <Mail className="w-4 h-4 text-blue-600 dark:text-red-600" />
               23120394@student.hcmus.edu.vn
             </span>
           </div>

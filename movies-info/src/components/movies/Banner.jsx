@@ -50,6 +50,16 @@ const Banner = ({ movies }) => {
                       </span>
                       <span>|</span>
                       <span>{movie.year}</span>
+                      <span>|</span>
+                      {movie.genres &&
+                        movie.genres.map((genre, index) => (
+                          <span
+                            key={index}
+                            className="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded"
+                          >
+                            {genre}
+                          </span>
+                        ))}
                     </div>
                     <p className="text-gray-200 line-clamp-3 text-base md:text-lg drop-shadow-md">
                       {movie.short_description || "Đang cập nhật mô tả..."}

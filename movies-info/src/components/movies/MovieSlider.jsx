@@ -60,7 +60,7 @@ const MovieSlider = ({ title, movies }) => {
                     </div>
                     <div className="flex flex-wrap gap-1 mt-2">
                       {movie.genres &&
-                        movie.genres.slice(0, 2).map((genre, index) => (
+                        movie.genres.map((genre, index) => (
                           <span
                             key={index}
                             className="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded"
