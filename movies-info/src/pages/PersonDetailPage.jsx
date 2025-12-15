@@ -158,17 +158,11 @@ const PersonDetailPage = () => {
 
                           {(movie.character || movie.role) && (
                             <p className="text-xs text-slate-300 mb-2 italic">
-                              Vai: {movie.character || movie.role}
+                              Role/Character: {movie.character || movie.role}
                             </p>
                           )}
 
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-1 text-yellow-400">
-                              <Star className="w-3 h-3 fill-current" />
-                              <span className="text-xs font-bold">
-                                {movie.rate || "N/A"}
-                              </span>
-                            </div>
+                          <div className="flex items-center">
                             <span className="text-xs text-slate-400">
                               {movie.year}
                             </span>

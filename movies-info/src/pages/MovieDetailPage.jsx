@@ -126,7 +126,7 @@ const MovieDetailPage = () => {
               <p className="font-bold text-xl text-green-700 dark:text-green-400">
                 {movie.box_office.cumulativeWorldwideGross ||
                   movie.box_office.revenue ||
-                  "Đang cập nhật"}
+                  "NA"}
               </p>
             </div>
           )}

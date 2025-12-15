@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
             <span className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-red-600" />
-              Đại học Khoa học Tự nhiên, ĐHQG-HCM
+              Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
             </span>
             <span className="hidden md:inline">•</span>
             <span className="flex items-center gap-2">
