@@ -11,10 +11,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const Header = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+
   return (
-    <header className="border-b bg-white py-3">
+    <header className="border-b bg-white dark:bg-black py-3">
       <div className="container mx-auto px-4 flex items-center justify-between max-w-[1200px]">
         <div className="text-l font-bold">23120394</div>
 
@@ -27,7 +30,11 @@ const Header = () => {
             <Sun className="w-4 h-4 text-orange-500" />
 
             {/* 4. Gắn hàm toggleTheme vào Switch */}
-            <Switch className="data-[state=checked]:bg-slate-600" />
+            <Switch
+              checked={isDarkMode}
+              onCheckedChange={toggleTheme}
+              className="data-[state=checked]:bg-slate-600"
+            />
 
             <Moon className="w-4 h-4 text-slate-600 dark:text-slate-300" />
           </div>
